@@ -1,8 +1,9 @@
 {
     "env": {
-        "MONGO_USER": "revier",
+        "MONGO_USER": "Revier",
         "MONGO_PASSWORD": "Revier4317",
         "MONGO_DB": "project-api",
-        "JWT_KEY": "secret"
+        "JWT_KEY": "secret",
+        "COLLECTION": "demo"
     }
 }
