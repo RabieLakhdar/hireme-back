@@ -1,7 +1,5 @@
 const util = require("../util/globalFunc");
-const {
-   genderList
-  } = require("../util/data");
+const { genderList } = require("../util/data");
 
 
 exports.getAllgender = (req, res, next) => {
