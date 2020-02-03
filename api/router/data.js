@@ -6,5 +6,6 @@ const router = express.Router()
 router.get('/gender', dataController.getAllgender)
 router.get('/duration', dataController.getAllDurtion)
 router.get('/price-duration', dataController.getAllPriceByDuration)
+router.post('/addsheet', dataController.getSheet)
 
 module.exports = router
