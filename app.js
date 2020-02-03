@@ -5,7 +5,6 @@ const app = express()
 
 const IndexRouter = require('./api/router/index')
 const UserRouter = require('./api/router/user')
-const DataRouter = require('./api/router/data')
 
 
 //Body parser
@@ -26,8 +25,7 @@ app.use((req, res, next) => {
 
 //Router
 app.use('/', IndexRouter)
-app.use('/user', UserRouter)
-app.use('/data', DataRouter)
+app.use('/users', UserRouter)
 
 //manage Error handle
 app.use((req, res, next) => {
@@ -37,6 +35,7 @@ app.use((req, res, next) => {
 })
 
 app.use((error, req, res, next) => {
+
     res.status(error.status || 500)
     res.json({
         error: {

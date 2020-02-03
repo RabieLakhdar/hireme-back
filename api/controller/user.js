@@ -23,7 +23,7 @@ exports.getAllUsrs = (req, res, next) => {
     });
 };
 
-exports.register = (req, res, next) => {
+exports.signup = (req, res, next) => {
   bcrypt.hash(req.body.password, 10, (err, hash) => {
     if (err)
       res.status(404).json({
@@ -32,12 +32,14 @@ exports.register = (req, res, next) => {
     else {
       const user = new User({
         _id: new mongoose.Types.ObjectId(),
-        fullname: req.body.fullname,
-        email: req.body.email,
+        name: req.body.name,
+        lastname: req.body.lastname,
+        username: req.body.username,
+        fbid: req.body.fbid,
         password: hash
       });
 
-      User.findOne({ email: user.email })
+      User.findOne({ username: user.username })
         .then(result => {
           if (result)
             res
@@ -45,8 +47,8 @@ exports.register = (req, res, next) => {
               .json(
                 util._request_response(
                   "POST",
-                  "/user/register",
-                  "Email already used before",
+                  "/users/add",
+                  "username already used before",
                   false,
                   result
                 )
@@ -60,8 +62,8 @@ exports.register = (req, res, next) => {
                   .json(
                     util._request_response(
                       "POST",
-                      "/user/register",
-                      "Succesfull user register",
+                      "/users/add",
+                      "Add user succesfull",
                       true,
                       result
                     )
@@ -73,8 +75,8 @@ exports.register = (req, res, next) => {
                   .json(
                     util._request_response(
                       "POST",
-                      "/user/register",
-                      "Register user failed after searching by email",
+                      "/users/add",
+                      "Add user failed",
                       false,
                       err
                     )
@@ -90,8 +92,8 @@ exports.register = (req, res, next) => {
                 .json(
                   util._request_response(
                     "POST",
-                    "/user/register",
-                    "Register user failed",
+                    "/users/add",
+                    "Add user failed",
                     false,
                     err
                   )
